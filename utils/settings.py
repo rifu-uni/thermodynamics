@@ -1,3 +1,3 @@
 
-SERIAL_PORT = "/dev/tty.usbmodem11301"
+SERIAL_PORT = "/dev/cu.usbmodem1111301"
 BAUD_RATE = 9600
