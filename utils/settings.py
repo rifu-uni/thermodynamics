@@ -1,3 +1,4 @@
 
-SERIAL_PORT = "/dev/cu.usbmodem1111301"
+SERIAL_PORT = "/dev/cu.usbmodem1201"
 BAUD_RATE = 9600
+OUTPUT_FILE = "mixedBoiling1repro.csv"

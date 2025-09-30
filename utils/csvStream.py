@@ -1,10 +1,9 @@
 import csv
 import os
 from .streamUtils import openSerialConnection
-from .livePlotter import singleLivePlotter
+from .livePlotter import singleLivePlotter, multiLivePlotter
+from .settings import OUTPUT_FILE
 
-# === CONFIGURATION ===
-OUTPUT_FILE = "data_stream.csv"
 
 def create_csv_file():
     """Create CSV file with headers if it does not exist."""
@@ -29,7 +28,9 @@ def csvStream(graph = True):
     # Initialize live plotter for Value1, Value2,... in multiLivePlotter
     # Only a single label for singleLivePlotter
     if graph == True:
-        plotter = singleLivePlotter(label="Value2")
+        plotter1 = singleLivePlotter(label="PT100")
+        plotter2 = singleLivePlotter(label="Thermistor")
+        # plotter = multiLivePlotter(labels=["Value0", 'Value1'])
 
     try:
         counter = 0
@@ -41,7 +42,7 @@ def csvStream(graph = True):
 
                 # For simplicity, plot only the first numeric value (Value1)
                 try:
-                    val = [float(v) for v in values[:3]]
+                    val = [float(v) for v in values[:6]]
                 except (ValueError, IndexError):
                     continue
 
@@ -51,7 +52,9 @@ def csvStream(graph = True):
                 print(f"Logged: {row}")
 
                 if graph == True:
-                    plotter.update(counter, val[1]) # Feed complete list for multiLivePlotter 
+                    '''val[n] for the values read from device'''
+                    plotter1.update(counter, val[2])
+                    plotter2.update(counter, val[5]) # Feed complete list for multiLivePlotter 
 
                 counter += 1
 
@@ -59,4 +62,5 @@ def csvStream(graph = True):
         print("\nStopping data stream.")
     finally:
         ser.close()
-        plotter.finalize()
+        plotter1.finalize()
+        plotter2.finalize()
