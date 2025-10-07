@@ -68,16 +68,7 @@ You will need Python 3.8+ and the following packages:
 - matplotlib
 - pyserial
 
-Install them in a virtual environment:
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install --upgrade pip
-pip install matplotlib pyserial
-```
-
-If you prefer, add a `requirements.txt` with the two packages.
+You can use `pixi` to install them.
 
 ## How to run
 

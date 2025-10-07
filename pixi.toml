@@ -1,0 +1,12 @@
+[workspace]
+authors = ["rifusaki <martinagmejia@gmail.com>"]
+channels = ["conda-forge"]
+name = "thermodynamics"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+matplotlib = ">=3.10.6,<4"
+pyserial = ">=3.5,<4"
