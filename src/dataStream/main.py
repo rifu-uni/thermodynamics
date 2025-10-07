@@ -1,4 +1,4 @@
-from utils.csvStream import csvStream
+from .csvStream import csvStream
 
 def main():
     csvStream(graph=True) # graph = True
