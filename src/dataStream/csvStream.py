@@ -9,7 +9,7 @@ def create_csv_file():
     """Create CSV file with headers if it does not exist."""
     with open(OUTPUT_FILE, mode="w", newline="") as file:
         writer = csv.writer(file)
-        writer.writerow(["Timestamp", "Raw", "Temp"])
+        writer.writerow(["id", "Timestamp", "RawLM35", "vLM35", "rawDiode", "vDiode"])
 
 def append_to_csv(data_row):
     """Append a row of data to the CSV file."""
