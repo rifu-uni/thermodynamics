@@ -9,7 +9,7 @@ def create_csv_file():
     """Create CSV file with headers if it does not exist."""
     with open(OUTPUT_FILE, mode="w", newline="") as file:
         writer = csv.writer(file)
-        writer.writerow(["id", "Timestamp", "RawLM35", "vLM35", "rawDiode", "vDiode"])
+        writer.writerow(["t", "V", "R"])
 
 def append_to_csv(data_row):
     """Append a row of data to the CSV file."""
@@ -19,6 +19,7 @@ def append_to_csv(data_row):
 
 def csvStream(graph = True):
     # Ensure CSV file exists
+    print(f"Output file: {OUTPUT_FILE}")
     if not os.path.exists(OUTPUT_FILE):
         create_csv_file()
 
@@ -29,14 +30,13 @@ def csvStream(graph = True):
     # Only a single label for singleLivePlotter
     if graph == True:
         plotter1 = singleLivePlotter(label="PT100")
-        plotter2 = singleLivePlotter(label="Thermistor")
         # plotter = multiLivePlotter(labels=["Value0", 'Value1'])
 
     try:
         counter = 0
         while True:
             line = ser.readline().decode("utf-8").strip()
-            # print(line)
+            print(line)
             if line:
                 values = line.split(",")
 
@@ -54,7 +54,6 @@ def csvStream(graph = True):
                 if graph == True:
                     '''val[n] for the values read from device'''
                     plotter1.update(counter, val[2])
-                    plotter2.update(counter, val[5]) # Feed complete list for multiLivePlotter 
 
                 counter += 1
 
@@ -63,4 +62,3 @@ def csvStream(graph = True):
     finally:
         ser.close()
         plotter1.finalize()
-        plotter2.finalize()

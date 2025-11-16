@@ -1,4 +1,4 @@
 
-SERIAL_PORT = "/dev/cu.usbserial-110"
+SERIAL_PORT = "/dev/cu.usbmodem1201"
 BAUD_RATE = 9600
-OUTPUT_FILE = "repro.csv"
+OUTPUT_FILE = "cobre.csv"
